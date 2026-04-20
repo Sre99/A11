@@ -22,27 +22,25 @@ body {
     line-height: 1.5;
 }
 
-/* --- MOBILE-FIRST STYLES --- */
+/* --- MOBILE-FIRST STYLES (Outside Media Query) --- */
 
-/* Header [cite: 71, 77] */
 header {
-    text-align: center; /* [cite: 77] */
+    text-align: center; 
     padding: 1em;
     background-image: linear-gradient(30deg, var(--gradient-color), white, var(--gradient-color));
 }
-header img { display: none; } /* [cite: 77] */
+header img { display: none; } 
 
-/* Navigation Mobile [cite: 42-47] */
 .navbar {
     background-color: var(--accent-color);
-    position: relative; /* [cite: 42] */
+    position: relative; 
     min-height: 45px;
 }
 
-#menu-btn { display: none; } /* [cite: 46] */
+#menu-btn { display: none; } 
 
 .menu-btn {
-    display: block; /* [cite: 45] */
+    display: block; 
     float: right;
     padding: 12px;
     cursor: pointer;
@@ -67,15 +65,15 @@ header img { display: none; } /* [cite: 77] */
 .navicon:after { top: -6px; }
 
 .menu {
-    display: none; /* [cite: 44] */
-    position: absolute; /* [cite: 44] */
+    display: none; 
+    position: absolute; 
     width: 100%;
     background-color: var(--accent-color);
     list-style: none;
     z-index: 10;
 }
 
-#menu-btn:checked ~ .menu { display: block; } /* [cite: 47] */
+#menu-btn:checked ~ .menu { display: block; } 
 
 .menu li a {
     display: block;
@@ -85,48 +83,58 @@ header img { display: none; } /* [cite: 77] */
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Submenu Mobile triangle [cite: 61] */
+/* Submenu Mobile triangle  */
 .submenu > a::after { content: " \25B8"; }
 
-/* Layout Mobile [cite: 25, 26, 29] */
+/* Layout Mobile ] */
 main {
     display: flex;
-    flex-direction: column-reverse; /* [cite: 25] */
+    flex-direction: column-reverse; 
     padding: 1em;
 }
 
 section { 
-    border-bottom: 2px solid #ccc; /* [cite: 29] */
+    border-bottom: 2px solid #ccc; 
     padding-bottom: 1em;
 }
 
-section img { max-width: 100%; height: auto; } /* Responsive requirement */
+section img { max-width: 100%; height: auto; }
 
 /* --- MEDIA QUERY (Desktop/Tablet) --- */
 
-@media (min-width: 768px) { /* [cite: 17, 33] */
-    header { text-align: left; } /* [cite: 76] */
-    header img { display: block; float: left; width: 60px; margin-right: 15px; } /* [cite: 76] */
+@media (min-width: 768px) {
+    header { text-align: left; } 
+    header img { display: block; float: left; width: 70px; margin-right: 15px; } 
 
-    .menu-btn { display: none; } /* [cite: 39] */
-
+    /* Navigation Desktop  */
+    .menu-btn { display: none; } 
     .menu {
-        display: flex; /* [cite: 52] */
-        position: relative; /* [cite: 37] */
-        width: 100%; /* [cite: 38] */
+        display: flex; 
+        position: relative; 
+        width: 100%; 
     }
-
     .menu li { flex: 1; text-align: center; }
     
-    /* Submenu Desktop triangle [cite: 58] */
-    .submenu > a::after { content: " \25BE"; }
+    /* Dropdown/Submenu Desktop  */
+    .dropdown { 
+        position: absolute; /*  */
+        top: auto; /* [cite: 60] */
+        left: 0; 
+        background-color: var(--accent-color);
+        width: 100%;
+        display: none;
+    }
+    .submenu:hover .dropdown { display: block; }
+    .submenu > a::after { content: " \25BE"; } 
 
-    main { flex-direction: row; } /* [cite: 23] */
-    section { flex: 3; border-bottom: none; padding-right: 20px; } /* [cite: 24, 30] */
-    aside { flex: 1; } /* [cite: 24] */
+    /* Layout Desktop  */
+    main { flex-direction: row; } 
+    section { 
+        flex: 3; 
+        border-bottom: none; 
+        padding-right: 20px; 
+    }
+    aside { flex: 1; } 
 }
 
 footer { background-color: var(--accent-color); color: white; text-align: center; padding: 1em; }
-
-
-
