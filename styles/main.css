@@ -1,4 +1,4 @@
-/* custom property */
+/* Custom Properties */
 :root {
     --accent-color: #800000;
     --gradient-color: #f6bb73;
@@ -7,208 +7,126 @@
     --dark_menu: black;
 }
 
-/* reset */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* default styles */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: calc(15px + .2vw);
-    width: min(80%, 1024px);
-    line-height: 1.5;
+    width: min(95%, 1024px);
     margin: auto;
     border: 2px solid var(--accent-color);
+    line-height: 1.5;
 }
 
-h1, h2, h3, p, ul {
-    padding: .25em 0;
-}
-
-a:hover, a:focus {
-    font-style: italic;
-    color: var(--accent-color);
-}
-
-h1 { font-size: 150%; }
-h2 { font-size: 130%; color: var(--accent-color); }
-h3 { font-size: 105%; }
-ul { margin-left: 2em; }
-
-/* --- MOBILE-FIRST STYLES (Default) --- */
+/* --- MOBILE-FIRST STYLES --- */
 
 /* Header [cite: 71, 77] */
 header {
-    line-height: 1.2;
-    border-bottom: 2px solid var(--accent-color);
-    background-image: linear-gradient(30deg, var(--gradient-color) 0%, white 30%, white 65%, var(--gradient-color) 100%);
-    text-align: center; /* Centered for mobile */
+    text-align: center; /* [cite: 77] */
+    padding: 1em;
+    background-image: linear-gradient(30deg, var(--gradient-color), white, var(--gradient-color));
 }
+header img { display: none; } /* [cite: 77] */
 
-header h2 { font-size: 175%; padding: .5em 0 0 0; }
-header h3 { font-size: 130%; font-style: italic; padding-bottom: 1em; }
-
-header img {
-    display: none; /* Hide logo on mobile [cite: 77] */
-}
-
-/* Navigation & Hamburger Menu [cite: 31, 42-47] */
+/* Navigation Mobile [cite: 42-47] */
 .navbar {
-    clear: left;
     background-color: var(--accent-color);
     position: relative; /* [cite: 42] */
+    min-height: 45px;
 }
 
-#menu-btn {
-    display: none; /* Hide checkbox [cite: 46] */
-}
+#menu-btn { display: none; } /* [cite: 46] */
 
 .menu-btn {
-    display: block;
-    cursor: pointer;
+    display: block; /* [cite: 45] */
     float: right;
-    padding: 15px;
+    padding: 12px;
+    cursor: pointer;
 }
 
-/* Hamburger Icon (three lines) */
 .navicon {
     background: white;
     display: block;
     height: 2px;
-    position: relative;
     width: 20px;
+    position: relative;
 }
 .navicon:before, .navicon:after {
     background: white;
     content: '';
     display: block;
     height: 100%;
-    position: absolute;
     width: 100%;
-    transition: all .2s ease-out;
+    position: absolute;
 }
 .navicon:before { top: 6px; }
 .navicon:after { top: -6px; }
 
-/* Toggle Menu Animation to X */
-#menu-btn:checked ~ .menu-btn .navicon { background: transparent; }
-#menu-btn:checked ~ .menu-btn .navicon:before { transform: rotate(-45deg); top: 0; }
-#menu-btn:checked ~ .menu-btn .navicon:after { transform: rotate(45deg); top: 0; }
-
 .menu {
-    display: none; /* Hide menu by default [cite: 44] */
+    display: none; /* [cite: 44] */
     position: absolute; /* [cite: 44] */
-    left: 0;
-    top: 100%;
-    width: 40%; /* [cite: 44] */
+    width: 100%;
     background-color: var(--accent-color);
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+    list-style: none;
     z-index: 10;
 }
 
-#menu-btn:checked ~ .menu {
-    display: block; /* Show when checked [cite: 47] */
-}
+#menu-btn:checked ~ .menu { display: block; } /* [cite: 47] */
 
-.navbar ul li a {
+.menu li a {
     display: block;
     padding: 1em;
+    color: white;
     text-decoration: none;
-    margin: 0 2px 2px 0; /* [cite: 69] */
-    color: var(--light_menu);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.navbar a:hover, .navbar a:focus, .navbar a.current {
-    background-color: var(--mid_menu);
-    color: var(--dark_menu);
-}
+/* Submenu Mobile triangle [cite: 61] */
+.submenu > a::after { content: " \25B8"; }
 
-/* Main Layout [cite: 14, 25-27, 29] */
+/* Layout Mobile [cite: 25, 26, 29] */
 main {
     display: flex;
-    flex-direction: column-reverse; /* Section first, then aside [cite: 25, 26] */
-    padding: 0 1em 1em;
+    flex-direction: column-reverse; /* [cite: 25] */
+    padding: 1em;
 }
 
-section {
-    padding-left: .5em;
-    border-bottom: 2px solid #ccc; /* Mobile border [cite: 29] */
-    /* flex-basis removed for mobile [cite: 27] */
+section { 
+    border-bottom: 2px solid #ccc; /* [cite: 29] */
+    padding-bottom: 1em;
 }
 
-section img {
-    width: clamp(100px, 50%, 250px);
-    float: right;
-    margin: 0 1em .25em;
-}
-
-aside {
-    padding-right: .5em;
-    /* flex-basis removed for mobile [cite: 27] */
-}
-
-/* Footer */
-footer {
-    background-color: var(--accent-color);
-}
-footer p {
-    text-align: center;
-    color: white;
-    padding: 1em 0;
-}
-
-/* Shared Classes */
-.featured { border-top: 2px solid var(--accent-color); border-bottom: 2px solid var(--accent-color); padding: .5em 0 1em; }
-.speaker h1 { color: var(--accent-color); }
-.speaker p { padding: .5em 0; }
-.large { font-size: 125%; }
+section img { max-width: 100%; height: auto; } /* Responsive requirement */
 
 /* --- MEDIA QUERY (Desktop/Tablet) --- */
 
-@media (min-width: 768px) {
-    /* Header [cite: 73, 76] */
-    header {
-        text-align: left; /* [cite: 76] */
-    }
-    header img {
-        display: block; /* Show logo [cite: 76] */
-        width: clamp(40px, 15%, 80px);
-        float: left;
-        margin: .75em 1em;
-    }
+@media (min-width: 768px) { /* [cite: 17, 33] */
+    header { text-align: left; } /* [cite: 76] */
+    header img { display: block; float: left; width: 60px; margin-right: 15px; } /* [cite: 76] */
 
-    /* Column Layout [cite: 12, 23, 24, 30] */
-    main {
-        flex-direction: row; /* [cite: 23] */
-    }
-    section {
-        flex-basis: 75%; /* [cite: 24] */
-        border-bottom: none; /* [cite: 30] */
-    }
-    aside {
-        flex-basis: 25%; /* [cite: 24] */
-    }
+    .menu-btn { display: none; } /* [cite: 39] */
 
-    /* Navigation [cite: 33, 37, 39, 52] */
-    .menu-btn {
-        display: none; /* Hide hamburger [cite: 39] */
-    }
     .menu {
-        display: flex; /* Horizontal menu [cite: 52] */
+        display: flex; /* [cite: 52] */
         position: relative; /* [cite: 37] */
         width: 100%; /* [cite: 38] */
-        background-color: transparent;
     }
-    .menu li {
-        flex-basis: 20%;
-        text-align: center;
-    }
-    .navbar ul li a {
-        margin: 0 1px 2px; /* Reset margins for horizontal */
-    }
+
+    .menu li { flex: 1; text-align: center; }
+    
+    /* Submenu Desktop triangle [cite: 58] */
+    .submenu > a::after { content: " \25BE"; }
+
+    main { flex-direction: row; } /* [cite: 23] */
+    section { flex: 3; border-bottom: none; padding-right: 20px; } /* [cite: 24, 30] */
+    aside { flex: 1; } /* [cite: 24] */
 }
+
+footer { background-color: var(--accent-color); color: white; text-align: center; padding: 1em; }
+
+
+
